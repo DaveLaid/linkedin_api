@@ -48,23 +48,43 @@ $('#linkedinSearch').keyup(function() {
 		contentType: "application/json",
 		dataType: 'jsonp',
 		success: function(data) {
-			console.log(data);
-			console.log(data.company.resultList[0].displayName);
-			console.log(data.company.resultList[0].imageUrl);
-			console.log(data.company.resultList[0].subLine);
+			var cResults = $('#companyResults');
+			// var baseList = data.company.resultList;
+			var numbersList = [0,1,2,3,4];
+			// var dn = displayName;
+			// var iu = imageUrl;
+			// var sl = subLine;
 
-		  	var output = '<ul class="searchResults">';
-			$.each(data,function(key, val) {
-				if (val.company[myExp] != -1) {
-					output += '<li>';
-					output += '<h2>' + val.displayName + '</h2>';
-					output += '<img src="' + val.company[myExp].imageUrl + '" alt="' + val.company.displayName +'" />';
-					output += '<p>' + val.company + '</p>';
-					output += '</li>';
-				}
+			// console.log(data);
+			// console.log(data.company.resultList[0].displayName);
+			// console.log(data.company.resultList[0].imageUrl);
+			// console.log(data.company.resultList[0].subLine);
+			
+			$.each(data.data, function(k, v) {
+			    $(cResults).html(JSON.stringify(val.company.resultList[myExp].displayName));
 			});
-			output += '</ul>';
-			$('#companyResults').html(output);
+			
+
+			// for (var i = 0; i < 4; i++) {
+			// 	$('#companyResults').html(data.company.resultList[i].displayName);
+			// }
+
+			// function resultsFunction(item, index) {
+			//     cResults = cResults.innerHTML + "index[" + index + "]: " + item + "<br>"; 
+			// }
+
+		 //  	var output = '<ul class="searchResults">';
+			// $.each(data, function(key, val) {
+			// 	if (val.company[myExp] != -1) {
+			// 		output += '<li>';
+			// 		output += '<h2>' + val.displayName + '</h2>';
+			// 		output += '<img src="' + val.company[myExp].imageUrl + '" alt="' + val.company.displayName +'" />';
+			// 		output += '<p>' + val.company + '</p>';
+			// 		output += '</li>';
+			// 	}
+			// });
+			// output += '</ul>';
+			// cResults.innerHTML(output);
 
 			//console.log('Company: ' + data.companies);
 		},
