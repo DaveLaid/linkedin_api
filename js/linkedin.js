@@ -1,45 +1,15 @@
-var resultsDiv = document.getElementById('results');
+// var resultsDiv = document.getElementById('results');
 
-function saveSearch() {
-	var searchInput = document.getElementById('linkedinSearch').value;
-	resultsDiv.innerHTML = searchInput;
-}
-
-
-
-// $('#linkedinSearch').keyup(function() {
-// 	var searchField = $('#linkedinSearch').val();
-// 	console.log(searchField);
-// 	var myExp = new RegExp (searchField, "i");
-// 	$.getJSON('data.json', function(data){
-// 		var output = '<ul class="searchResults">';
-// 		$.each(data,function(key, val) {
-// 			if ((val.name.search(myExp) != -1) || (val.bio.search(myExp) != -1)) {
-// 				output += '<li>';
-// 				output += '<h2>' + val.name + '</h2>';
-// 				output += '<img src="images/' + val.shortname + '_tn.jpg" alt="' + val.name +'" />';
-// 				output += '<p>' + val.bio + '</p>';
-// 				output += '</li>';
-// 			}
-// 		});
-// 		output += '</ul>';
-// 		$('#results').html(output);
-// 	});
-// });
-
-
-// $.ajax({
-//       url: "http://www.omdbapi.com/?t=romancing+the+stone&y=&plot=short&apikey=40e9cece",
-//       method: "GET"
-//     }).done(function(response) {
-//       console.log(response);
-//     });
-
+// function saveSearch() {
+// 	var searchInput = document.getElementById('linkedinSearch').value;
+// 	resultsDiv.innerHTML = searchInput;
+// }
 
 
 $('#linkedinSearch').keyup(function() {
 	var searchField = $('#linkedinSearch').val();
-	console.log(searchField);
+	// console.log(searchField);
+	// Lets us do case insensitive searches:
 	var myExp = new RegExp (searchField, "i");
 
 	$.ajax({
@@ -48,45 +18,38 @@ $('#linkedinSearch').keyup(function() {
 		contentType: "application/json",
 		dataType: 'jsonp',
 		success: function(data) {
-			var cResults = $('#companyResults');
-			// var baseList = data.company.resultList;
-			var numbersList = [0,1,2,3,4];
-			// var dn = displayName;
-			// var iu = imageUrl;
-			// var sl = subLine;
+			var companyID;
+			var newsFeed = '<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:';
+			var output = '<ul class="searchResults">';
+			$.each(data, function(key, val) {
+				for (var i = 0; i < 5; i++) {
+					if (val.resultList[i].displayName.search(myExp) != -1) {
+						console.log(val);
+						output += '<li>';
+						output += '<h2>' + val.resultList[i].displayName + '</h2>';
+						output += '<img src="' + val.resultList[i].imageUrl + '" alt="' + val.resultList[i].displayName +'" />';
+						output += '<p>' + val.resultList[i].subLine + '</p>';
+						output += '</li>';
+						
+					}
+				}
+				//newsFeed += latestNewsID;
+				newsFeed += '6443100829355466752';
+				companyID = val.resultList[0].id;
+			});
+			output += '</ul>';
+			$('#companyResults').html(output);
+			newsFeed += '" height="350" width="320" max-height="530" max-width="504" frameborder="0" allowfullscreen=""></iframe>';
+			$('#newsFeed').html(newsFeed);
+			//$('#newsFeed').html('https://www.linkedin.com/biz/' + companyID + '/feed?start=0&v2=true');
 
-			// console.log(data);
-			// console.log(data.company.resultList[0].displayName);
+
+			//<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6443100829355466752" height="530" width="504" frameborder="0" allowfullscreen=""></iframe>
+			// https://www.linkedin.com/feed/update/urn:li:activity:6443100829691011072
+			//console.log("NAME: " + data.company.resultList[0].displayName);
 			// console.log(data.company.resultList[0].imageUrl);
 			// console.log(data.company.resultList[0].subLine);
-			
-			$.each(data.data, function(k, v) {
-			    $(cResults).html(JSON.stringify(val.company.resultList[myExp].displayName));
-			});
-			
 
-			// for (var i = 0; i < 4; i++) {
-			// 	$('#companyResults').html(data.company.resultList[i].displayName);
-			// }
-
-			// function resultsFunction(item, index) {
-			//     cResults = cResults.innerHTML + "index[" + index + "]: " + item + "<br>"; 
-			// }
-
-		 //  	var output = '<ul class="searchResults">';
-			// $.each(data, function(key, val) {
-			// 	if (val.company[myExp] != -1) {
-			// 		output += '<li>';
-			// 		output += '<h2>' + val.displayName + '</h2>';
-			// 		output += '<img src="' + val.company[myExp].imageUrl + '" alt="' + val.company.displayName +'" />';
-			// 		output += '<p>' + val.company + '</p>';
-			// 		output += '</li>';
-			// 	}
-			// });
-			// output += '</ul>';
-			// cResults.innerHTML(output);
-
-			//console.log('Company: ' + data.companies);
 		},
 		error: function() {
 			console.log('Failed!');
