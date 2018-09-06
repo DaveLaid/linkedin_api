@@ -20,3 +20,112 @@ list-style:none;
 .feed-item {
 padding:10px;
 }
+
+
+#linkedinSearch {
+	margin: 0 auto;
+	/*text-align: center;*/
+	/*background: #BF996B;*/
+	padding: 10px;
+	width: 50%;
+	-webkit-border-radius: 10px 10px 0 0;
+	-moz-border-radius: 10px 10px 0 0;
+	border-radius: 10px 10px 0 0;
+}
+#linkedinSearch label {
+	font: bold 1.3em Arial;
+	text-transform: uppercase;
+	padding-bottom: 5px;
+	color: #A61C1C;
+}
+#linkedinSearch p {
+	margin: 0;
+	line-height: 1em;
+	padding-bottom: 5px;
+}
+#linkedinSearch input {
+	width: 80%;
+	text-align: center;
+}
+
+
+#companyResults {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	width: 70%;
+	margin: 0 auto;
+	border-top: 1px dotted #CCC;
+}
+#companyResults ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#companyResults ul li {
+	width:  100%;
+	padding: 0 10px;
+	background: #EEE;
+	/*height: 110px;*/
+	overflow: hidden;
+	border-bottom: 1px dotted #CCC;
+
+	-webkit-animation: li_anim 0.6s;
+	-moz-animation: li_anim 0.6s;
+	-o-animation: li_anim 0.6s;
+	animation: li_anim 0.6s;
+
+	-webkit-transition: height 0.3s ease-out;
+	-moz-transition: height 0.3s ease-out;
+	-o-transition: height 0.3s ease-out;
+	transition: height 0.3s ease-out;
+}
+#companyResults li:hover {
+	cursor: pointer;
+	background: #FFFCE5;
+	/*min-height: 110px;
+	height: 250px;*/
+	/*overflow: visible;*/
+}
+#companyResults li p {
+	float: left;
+	font-size: 10px;
+	margin: 0 auto;
+	line-height: 1;
+}
+#companyResults h2 {
+	margin: 3px 0 0 0;
+	padding: 0;
+	font-size: 0.9em;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #2e4b8b;
+	/*border-bottom: 1px dotted #CCC;
+	margin-bottom: 10px;*/
+}
+#companyResults img {
+	float: left;
+	width: 45px;
+	margin-right: 10px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+#companyNews {
+	padding: 30px;
+}
+
+@-webkit-keyframes li_anim {
+	0% {opacity: 0.3;}
+	100% {opacity: 1.0;)
+}
+@-moz-keyframes li_anim {
+	0% {opacity: 0.3;}
+	100% {opacity: 1.0;)
+}
+@-o-keyframes li_anim {
+	0% {opacity: 0.3;}
+	100% {opacity: 1.0;)
+}
+@keyframes li_anim {
+	0% {opacity: 0.3;}
+	100% {opacity: 1.0;)
+}

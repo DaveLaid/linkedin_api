@@ -30,8 +30,10 @@ $('#linkedinSearch').keyup(function() {
 					if ( (val.resultList[i].displayName.search(myExp) != -1) || (val.resultList[i].subLine.search(myExp) != -1) ) {
 						console.log(val);
 						output += '<li>';
+						
+						output += '<img src="' + val.resultList[i].imageUrl + '" />';
 						output += '<h2>' + val.resultList[i].displayName + '</h2>';
-						output += '<img src="' + val.resultList[i].imageUrl + '" alt="' + val.resultList[i].displayName +'" />';
+						// output += ' alt="' + val.resultList[i].displayName + '" />';
 						output += '<p>' + val.resultList[i].subLine + '</p>';
 						output += '</li>';
 					}
