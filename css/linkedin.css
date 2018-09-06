@@ -2,6 +2,21 @@
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  /*font-family: Arial, Helvetica, sans-serif;*/
 }
 
+div.conf-macro.output-block input, .feed-item-meta, .comments {
+display:none;
+}
+.share-object img {
+max-width:300px;
+}
+.annotated-body {
+font-size: 1.5em;
+}
+.paging-url, .feed-item {
+list-style:none;
+}
+.feed-item {
+padding:10px;
+}
